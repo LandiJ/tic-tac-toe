@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { displayBoard } from "../actions/actions";
+import { displayBoard, resetBoard } from "../actions/actions";
 let gameBoard = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
 
 class GameDisplay extends Component {
@@ -27,12 +27,11 @@ class GameDisplay extends Component {
           this.props.board[option2] === this.props.board[option3]
         ) {
           let letter = this.props.board[option1];
-
-          alert(`Game over! ${letter}'s win!`);
+          setTimeout(() => alert(`Game over! ${letter}'s win!`), 200);
+          setTimeout(() => this.props.resetBoard(), 200);
         }
       }
     };
-    checkWin();
 
     let handlePress = index => {
       if (
@@ -48,8 +47,8 @@ class GameDisplay extends Component {
       console.log(this.props.board[index.index]);
 
       console.log("HEEEEERRRRR", this.props.board);
-      //   checkWin();
     };
+    checkWin();
 
     let list = this.props.board.map((value, index) => (
       <div
@@ -76,6 +75,6 @@ class GameDisplay extends Component {
 
 const mapStateToProps = state => ({ board: state.board });
 
-const mapDispatchToProps = () => ({ displayBoard });
+const mapDispatchToProps = () => ({ displayBoard, resetBoard });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameDisplay);

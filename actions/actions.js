@@ -6,3 +6,8 @@ export const displayBoard = index => {
     payload: index
   });
 };
+export const resetBoard = index => {
+  store.dispatch({
+    type: "RESET_BOARD"
+  });
+};

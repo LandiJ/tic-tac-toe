@@ -22,7 +22,9 @@ export default (state = initialState.board, action) => {
       }
       console.log(newState);
       return newState;
-
+    case "RESET_BOARD":
+      newState = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
+      return newState;
     default:
       return newState;
   }
